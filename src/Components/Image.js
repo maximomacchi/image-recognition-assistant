@@ -10,7 +10,11 @@ export default class Image {
 
   render() {
     if (this.state.imageURL) {
-      return <img src={this.state.imageURL} />;
+      return (
+        <div className="image">
+          <img src={this.state.imageURL} />
+        </div>
+      );
     } else {
       return <div>Loading...</div>;
     }

@@ -1,15 +1,16 @@
 import FetchHelper from '../../utilities/fetch-helper.js';
 import React, { Component } from 'react';
-import Image from '../Image.js';
 const LIMIT = 5;
 
 export default class ImageGroup extends Component {
   constructor(props) {
     super(props);
-    this.state = {images:[]};
-  }
-  componentDidMount() {
-    this.getData();
+    this.fetch(this.getParams(this.props.tags))
+        .then(resp => resp.json())
+        .then(json => {
+          console.log(json);
+          this.setState({images: json.hits.splice(this.props.maxImages, json.hits.length)});
+        });
   }
   getParams(tags) {
     tags.splice(LIMIT-1, tags.length);
@@ -18,14 +19,6 @@ export default class ImageGroup extends Component {
       q: this._assembleQuery(tags),
       'image_type': 'photo'
     }
-  }
-  getData() {
-    this.fetch(this.getParams(this.props.tags))
-    .then(resp => resp.json())
-    .then(json => {
-      console.log(json);
-      this.setState({images: json.hits.splice(this.props.maxImages, json.hits.length)});
-    });
   }
   fetch(params = {}) {
     return fetch(`/.netlify/functions/pixabay?${FetchHelper.serializeParams(params)}`);
@@ -37,8 +30,10 @@ export default class ImageGroup extends Component {
     }, '');
   }
   renderImages(images) {
-    console.log('rendering images', images);
-      return images.map(image => (<Image imgURL={image.previewURL}></Image>))
+    return images.map(image => {
+      return (<div> Not an image </div>)
+      // return new Image();
+    });
   }
   renderPlacholder() {
     return(
@@ -56,10 +51,10 @@ export default class ImageGroup extends Component {
     }
   }
   render() {
-    console.log('rendering image group called', this.props, this.state);
+    console.log('rendering image group called');
     return (
       <div id='imageGroup'>
-        {this.state.images.map(image => (<Image imageURL={image.largeImageURL}></Image>))}
+        {this.renderGroup()}
       </div>
     )
   }

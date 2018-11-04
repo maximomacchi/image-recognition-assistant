@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./scss/main.scss";
 
 class LambdaDemo extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class LambdaDemo extends Component {
     e.preventDefault();
 
     this.setState({ loading: true });
-    fetch('/.netlify/functions/hello')
+    fetch("/.netlify/functions/hello")
       .then(response => response.json())
       .then(json => this.setState({ loading: false, msg: json.msg }));
   };
@@ -23,7 +23,7 @@ class LambdaDemo extends Component {
     return (
       <p>
         <button onClick={this.handleClick}>
-          {loading ? 'Loading...' : 'Call Lambda'}
+          {loading ? "Loading..." : "Call Lambda"}
         </button>
         <br />
         <span>{msg}</span>

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
 import { ImageRecognitionResponsePhase } from "./image-recognition-response-phase";
-import { requestTagsForImageURL } from "../../utilities/clarifai-handler";
+import {
+  requestTagsForImageURL,
+  requestTagsForImageBytes
+} from "../../utilities/clarifai-handler";
 import { ImageRecognitionRequestPhase } from "./image-recognition-request-phase";
 
 export class ImageRecognitionWidget extends Component {
@@ -9,24 +12,35 @@ export class ImageRecognitionWidget extends Component {
     super();
     this.state = {
       fetchStatus: "NoInput",
-      // fetchStatus: "ReceivedResponse",
       imageSrc: "",
       tags: []
     };
   }
 
-  onSearchButtonClick(url) {
+  successfuleFetchCallback(response, imageSource = null) {
+    // if imageSource is null, dont change it
     // Double storage of tags so widget can be standalone
-    requestTagsForImageURL(url, response => {
-      const receivedTags = response["outputs"][0]["data"]["concepts"];
-      this.setState({
-        fetchStatus: "ReceivedResponse",
-        imageSrc: url,
-        tags: receivedTags
-      });
-      // Store tags on app state as well
-      this.props.onTagsReceived(receivedTags);
-    });
+    const receivedTags = response["outputs"][0]["data"]["concepts"];
+    this.setState(prevState => ({
+      fetchStatus: "ReceivedResponse",
+      imageSrc: imageSource ? imageSource : prevState.imageSrc,
+      tags: receivedTags
+    }));
+    // Store tags on app state as well
+    this.props.onTagsReceived(receivedTags);
+  }
+
+  onSearchButtonClick(url) {
+    requestTagsForImageURL(url, response =>
+      this.successfuleFetchCallback(response, url)
+    );
+  }
+
+  onSearchButtonClickFileInput(fileBase64) {
+    requestTagsForImageBytes(fileBase64, response =>
+      // Dont change image source
+      this.successfuleFetchCallback(response)
+    );
   }
 
   onNewSearchPress() {
@@ -37,11 +51,21 @@ export class ImageRecognitionWidget extends Component {
     });
   }
 
+  onFileInputChange(fileObj) {
+    this.setState({
+      imageSrc: URL.createObjectURL(fileObj)
+    });
+  }
+
   renderBody() {
     if (["NoInput", "Requesting"].includes(this.state.fetchStatus)) {
       return (
         <ImageRecognitionRequestPhase
           onSearchButtonClick={url => this.onSearchButtonClick(url)}
+          onSearchButtonClickFileInput={fileBase64 =>
+            this.onSearchButtonClickFileInput(fileBase64)
+          }
+          onFileInputChange={fileObj => this.onFileInputChange(fileObj)}
         />
       );
     } else if (["ReceivedResponse"].includes(this.state.fetchStatus)) {

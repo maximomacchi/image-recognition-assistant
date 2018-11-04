@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ImageRecognitionTabs } from "./image-recognition-tabs";
+import FileBase64 from "react-file-base64";
 
 export class ImageRecognitionRequestPhase extends Component {
   constructor() {
@@ -40,6 +41,16 @@ export class ImageRecognitionRequestPhase extends Component {
     });
   }
 
+  onFileEncoded(files) {
+    // Store file path to be previewed in response
+    this.props.onFileInputChange(files["file"]);
+    // Format base64 string from process result
+    const b64str = files["base64"];
+    this.setState({
+      fileInput: b64str.slice(b64str.indexOf(",") + 1)
+    });
+  }
+
   renderURLInput() {
     return (
       <div className="img-rec-wgt-request-tab-content">
@@ -62,7 +73,8 @@ export class ImageRecognitionRequestPhase extends Component {
         <span className="img-rec-wgt-request-tab-content-desc">
           Select an image to upload:
         </span>
-        <input type="file" id="input-img-file" name="input-img-file" />
+        {/* <input type="file" id="input-img-file" name="input-img-file" /> */}
+        <FileBase64 multiple={false} onDone={this.onFileEncoded.bind(this)} />
       </div>
     );
   }
@@ -76,12 +88,14 @@ export class ImageRecognitionRequestPhase extends Component {
   }
 
   renderSearchButton() {
+    // Action of search button based on active tab
+    const onClickFunction =
+      this.state.activeTab === "File Upload"
+        ? () => this.props.onSearchButtonClickFileInput(this.state.fileInput)
+        : () => this.props.onSearchButtonClick(this.state.urlInput);
     return (
       <div className="img-rec-wgt-footer-btn">
-        <button
-          id="img-rec-wgt-search-btn"
-          onClick={() => this.props.onSearchButtonClick(this.state.urlInput)}
-        >
+        <button id="img-rec-wgt-search-btn" onClick={onClickFunction}>
           Search
         </button>
       </div>

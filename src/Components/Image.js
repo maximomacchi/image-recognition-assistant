@@ -6,20 +6,16 @@ export default class Image extends Component {
   }
 
   render() {
-    if (this.props.imageURL != "") {
-      return (
-        <div className="imageComponent">
-          <img className="image" src={this.props.imageURL} />
-          <button className="imgButton" id="downloadButton">
-            Download
-          </button>
-          <button className="imgButton" id="shareButton">
-            Share
-          </button>
-        </div>
-      );
-    } else {
-      return <div>Loading...</div>;
-    }
+    return (
+      <div className="imageComponent">
+        <img className="image" src={this.props.imageURL} />
+        <button className="imgButton" id="downloadButton">
+          Download
+        </button>
+        <button className="imgButton" id="shareButton">
+          Share
+        </button>
+      </div>
+    );
   }
 }

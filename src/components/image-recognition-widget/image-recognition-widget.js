@@ -32,6 +32,19 @@ export class ImageRecognitionWidget extends Component {
     );
   }
 
+  renderSearchButton() {
+    // temp
+    return (
+      <button
+        onClick={this.onSearchButtonClick(
+          "https://samples.clarifai.com/metro-north.jpg"
+        )}
+      >
+        Test Search
+      </button>
+    );
+  }
+
   renderBody() {
     const testTags = [
       { name: "tag1", value: "1" },
@@ -77,6 +90,7 @@ export class ImageRecognitionWidget extends Component {
     return (
       <div className="img-rec-wgt-component">
         {this.renderHead()}
+        {this.renderSearchButton()}
         {this.renderBody()}
         {this.renderFooter()}
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class ImageRecognitionResponse extends Component {
+export class ImageRecognitionResponsePhase extends Component {
   renderImage() {
     if (this.props.imageSrc.length <= 0) {
       return;
@@ -12,6 +12,7 @@ export class ImageRecognitionResponse extends Component {
       </div>
     );
   }
+
   renderTagsList() {
     // generate jsx for each tag item
     const tagItemsList = this.props.tags.map((tagObject, index) => {
@@ -58,4 +59,4 @@ export class ImageRecognitionResponse extends Component {
   }
 }
 
-export default ImageRecognitionResponse;
+export default ImageRecognitionResponsePhase;

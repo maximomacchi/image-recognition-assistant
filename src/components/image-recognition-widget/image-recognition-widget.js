@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
-import { ImageRecognitionResponse } from "./response-phase/image-recognition-response-phase";
+import { ImageRecognitionResponsePhase } from "./image-recognition-response-phase";
 import { requestTagsForImageURL } from "../../utilities/clarifai-handler";
+import { ImageRecognitionRequestPhase } from "./image-recognition-request-phase";
 
 export class ImageRecognitionWidget extends Component {
   constructor() {
     super();
     this.state = {
-      // fetchStatus: "NoInput",
-      fetchStatus: "ReceivedResponse",
+      fetchStatus: "NoInput",
+      // fetchStatus: "ReceivedResponse",
       imageSrc: "",
       tags: []
     };
@@ -32,14 +33,13 @@ export class ImageRecognitionWidget extends Component {
     if (["NoInput", "Requesting"].includes(this.state.fetchStatus)) {
       return (
         <div>
-          {/* <ImageRecognitionRequest onSearchButtonClick=onSearchButtonClick 
-                                       fetchStatus=this.state.fetchStatus /> */}
+          <ImageRecognitionRequestPhase />
         </div>
       );
     } else if (["ReceivedResponse"].includes(this.state.fetchStatus)) {
       return (
         <div>
-          <ImageRecognitionResponse
+          <ImageRecognitionResponsePhase
             // onTagsReceived={this.props.onTagsReceived}
             onNewSearchPress={() =>
               this.onSearchButtonClick(

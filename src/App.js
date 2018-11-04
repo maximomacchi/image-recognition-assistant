@@ -47,9 +47,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-<<<<<<< HEAD
-        <ImageGroup />
-=======
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -57,7 +54,6 @@ class App extends Component {
           </p>
           <ImageGroup tags={testTags} maxImages={5} />
         </header>
->>>>>>> 1afefe2e5b6e47c1f5566f1764b517897450e113
       </div>
     );
   }

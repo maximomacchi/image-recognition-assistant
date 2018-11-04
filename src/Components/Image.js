@@ -9,7 +9,7 @@ export default class Image extends Component {
 
   downloadClick(e) {
     console.log("Download button clicked");
-    window.location.href=this.props.imageURL;
+    window.location.href = this.props.imageURL;
   }
 
   shareClick(e) {

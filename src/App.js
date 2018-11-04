@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Image from "./Components/Image";
 
 class LambdaDemo extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class LambdaDemo extends Component {
     e.preventDefault();
 
     this.setState({ loading: true });
-    fetch('/.netlify/functions/hello')
+    fetch("/.netlify/functions/hello")
       .then(response => response.json())
       .then(json => this.setState({ loading: false, msg: json.msg }));
   };
@@ -23,7 +24,7 @@ class LambdaDemo extends Component {
     return (
       <p>
         <button onClick={this.handleClick}>
-          {loading ? 'Loading...' : 'Call Lambda'}
+          {loading ? "Loading..." : "Call Lambda"}
         </button>
         <br />
         <span>{msg}</span>
@@ -36,13 +37,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <LambdaDemo />
-        </header>
+        <Image imageURL="https://res.cloudinary.com/demo/image/upload/w_250,h_250,c_mfit/w_700/sample.jpg" />
       </div>
     );
   }

@@ -1,31 +1,37 @@
 .image {
-    width: 100%;
-    height: auto;
-}
-
-.imageComponent {
-    transition: filter 0.5s;
-  }
-
-.imageComponent:hover {
-  filter: brightness(50%);
-}
-
-.imageComponent {
-    position: relative;
+  width: 100%;
+  height: auto;
 }
 
 .imgButton {
-    // display: none;
+    visibility: hidden;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+.imageComponent {
+  transition: filter 0.4s;
+}
+
+.imageComponent:hover {
+  filter: brightness(35%);
+}
+
+.imageComponent:hover > .imgButton {
+  visibility: visible;
+}
+
+.imageComponent {
+  position: relative;
 }
 
 #downloadButton {
-    top: 70%;
+  top: 70%;
 }
 
 #shareButton {
-    top: 80%;
+  top: 80%;
 }

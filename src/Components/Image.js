@@ -3,16 +3,13 @@ import React, { Component } from "react";
 export default class Image extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      imageURL: this.props.imageURL
-    };
   }
 
   render() {
-    if (this.state.imageURL != "") {
+    if (this.props.imageURL != "") {
       return (
         <div className="imageComponent">
-          <img className="image" src={this.state.imageURL} />
+          <img className="image" src={this.props.imageURL} />
           <button className="imgButton" id="downloadButton">
             Download
           </button>

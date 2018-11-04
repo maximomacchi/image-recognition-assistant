@@ -19,23 +19,27 @@
 .imgButton {
   visibility: hidden;
   position: absolute;
-  left: 50%;
+  left: 80%;
   transform: translate(-50%, -50%);
   padding: 10px;
-  border-radius: 35px;
+  //   border-radius: 35px;
   background-color: initial;
   color: white;
-  border: 2px solid white;
+  //   border: 2px solid white;
+  border: none;
   height: 65px;
   width: 225px;
   font-size: 2.75vw;
   transition: background-color 0.35s;
   transition: color 0.35s;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
 }
 
 .imgButton:hover {
-  background-color: rgb(234, 248, 248);
-  color: black;
+  //   background-color: rgb(234, 248, 248);
+  //   color: black;
+  color: rgb(107, 206, 198);
   cursor: pointer;
 }
 

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./scss/main.scss";
-import Image from "./Components/Image";
+import Image from "./components/Image";
+
+import ImageGroup from "./components/image-group/image-group.js";
 
 class LambdaDemo extends Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Image imageURL="https://res.cloudinary.com/demo/image/upload/w_250,h_250,c_mfit/w_700/sample.jpg" />
+        <ImageGroup />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import "./App.css";
+import "./scss/main.scss";
 import Image from "./Components/Image";
 
 class LambdaDemo extends Component {

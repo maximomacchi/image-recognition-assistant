@@ -1,37 +1,70 @@
 .image {
   width: 100%;
   height: auto;
+  transition: filter 0.35s;
+}
+
+.image:hover {
+  filter: brightness(25%);
 }
 
 .imgButton {
-    visibility: hidden;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    border-radius: 20px;
-  }
-
-.imageComponent {
-  transition: filter 0.4s;
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  border-radius: 35px;
+  background-color: initial;
+  color: white;
+  border: 2px solid white;
+  height: 65px;
+  width: 225px;
+  font-size: 2.75vw;
 }
 
-.imageComponent:hover {
-  filter: brightness(35%);
-}
-
-.imageComponent:hover > .imgButton {
-  visibility: visible;
+.imageComponent:hover > .image {
+  filter: brightness(25%);
 }
 
 .imageComponent {
   position: relative;
 }
 
+.imageComponent:hover .imgButton {
+  visibility: visible;
+}
+
 #downloadButton {
-  top: 70%;
+  top: 40%;
 }
 
 #shareButton {
-  top: 80%;
+  top: 60%;
+}
+
+@media (max-width: 700px) {
+  .imgButton {
+    font-size: 6vw;
+  }
+}
+
+@media (max-width: 600px) {
+  #downloadButton {
+    top: 35%;
+  }
+
+  #shareButton {
+    top: 65%;
+  }
+}
+
+@media (max-width: 375px) {
+  #downloadButton {
+    top: 30%;
+  }
+
+  #shareButton {
+    top: 70%;
+  }
 }

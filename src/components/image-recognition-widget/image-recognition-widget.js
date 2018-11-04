@@ -29,27 +29,28 @@ export class ImageRecognitionWidget extends Component {
     });
   }
 
+  onNewSearchPress() {
+    this.setState({
+      fetchStatus: "NoInput",
+      imageSrc: "",
+      tags: []
+    });
+  }
+
   renderBody() {
     if (["NoInput", "Requesting"].includes(this.state.fetchStatus)) {
       return (
-        <div>
-          <ImageRecognitionRequestPhase />
-        </div>
+        <ImageRecognitionRequestPhase
+          onSearchButtonClick={url => this.onSearchButtonClick(url)}
+        />
       );
     } else if (["ReceivedResponse"].includes(this.state.fetchStatus)) {
       return (
-        <div>
-          <ImageRecognitionResponsePhase
-            // onTagsReceived={this.props.onTagsReceived}
-            onNewSearchPress={() =>
-              this.onSearchButtonClick(
-                "https://samples.clarifai.com/metro-north.jpg"
-              )
-            }
-            imageSrc={this.state.imageSrc}
-            tags={this.state.tags}
-          />
-        </div>
+        <ImageRecognitionResponsePhase
+          onNewSearchPress={() => this.onNewSearchPress()}
+          imageSrc={this.state.imageSrc}
+          tags={this.state.tags}
+        />
       );
     } else {
       // Opportunity to add error boundaries

@@ -38,7 +38,7 @@ export class ImageRecognitionResponsePhase extends Component {
       <div className="img-rec-wgt-footer-btn">
         <button
           id="img-rec-wgt-new-search-btn"
-          onClick={this.props.onNewSearchPress}
+          onClick={() => this.props.onNewSearchPress()}
         >
           New Search
         </button>

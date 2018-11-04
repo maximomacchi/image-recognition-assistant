@@ -1,22 +1,43 @@
 import React, { Component } from "react";
+import { ImageRecognitionTabs } from "./image-recognition-tabs";
 
 export class ImageRecognitionRequestPhase extends Component {
   constructor() {
     super();
     this.state = {
-      activeTab: "URL"
+      activeTab: "URL",
+      fileInput: "",
+      urlInput: ""
     };
+  }
+
+  onTabSelect(tabName) {
+    this.setState({
+      activeTab: tabName
+    });
   }
 
   renderTabs() {
     return (
       <div className="img-rec-wgt-response-input-source-tabs">
-        <span className="img-rec-wgt-response-input-source-tabs-name">URL</span>
-        <span className="img-rec-wgt-response-input-source-tabs-name">
-          File upload
-        </span>
+        <ImageRecognitionTabs
+          name="URL"
+          activeTab={this.state.activeTab}
+          onTabSelect={tabName => this.onTabSelect(tabName)}
+        />
+        <ImageRecognitionTabs
+          name="File Upload"
+          activeTab={this.state.activeTab}
+          onTabSelect={tabName => this.onTabSelect(tabName)}
+        />
       </div>
     );
+  }
+
+  onURLChange(event) {
+    this.setState({
+      urlInput: event.target.value
+    });
   }
 
   renderURLInput() {
@@ -25,7 +46,12 @@ export class ImageRecognitionRequestPhase extends Component {
         <span className="img-rec-wgt-request-tab-content-desc">
           Enter the URL of the image:
         </span>
-        <input type="text" id="input-img-url" name="input-img-url" />
+        <input
+          type="text"
+          id="input-img-url"
+          name="input-img-url"
+          onChange={event => this.onURLChange(event)}
+        />
       </div>
     );
   }
@@ -43,7 +69,7 @@ export class ImageRecognitionRequestPhase extends Component {
 
   renderBody() {
     const bodyContent =
-      this.state.activeTab === "FileInput"
+      this.state.activeTab === "File Upload"
         ? this.renderFileInput()
         : this.renderURLInput();
     return <div className="img-rec-wgt-request-body">{bodyContent}</div>;
@@ -52,7 +78,12 @@ export class ImageRecognitionRequestPhase extends Component {
   renderSearchButton() {
     return (
       <div className="img-rec-wgt-footer-btn">
-        <button id="img-rec-wgt-search-btn">Search</button>
+        <button
+          id="img-rec-wgt-search-btn"
+          onClick={() => this.props.onSearchButtonClick(this.state.urlInput)}
+        >
+          Search
+        </button>
       </div>
     );
   }

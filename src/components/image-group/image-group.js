@@ -59,7 +59,7 @@ export default class ImageGroup extends Component {
     console.log('rendering image group called', this.props, this.state);
     return (
       <div id='imageGroup'>
-        {this.state.images.map(image => (<Image imageURL={image.previewURL}></Image>))}
+        {this.state.images.map(image => (<Image imageURL={image.largeImageURL}></Image>))}
       </div>
     )
   }

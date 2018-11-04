@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import ImageGroup from './components/image-group/image-group.js';
+
 class LambdaDemo extends Component {
   constructor(props) {
     super(props);
@@ -42,6 +44,7 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <LambdaDemo />
+          <ImageGroup />
         </header>
       </div>
     );

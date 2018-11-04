@@ -5,15 +5,6 @@ import ImageGroup from './components/image-group/image-group.js';
 import DownloadController from './components/download-controller/download-controller';
 
 
-
-const testTags = [
-  {'name': 'sunset'},
-  {'name': 'beach'},
-  {'name': 'waves'},
-  {'name': 'water'},
-  {'name': 'sunrise'}
-]
-
 class LambdaDemo extends Component {
   constructor(props) {
     super(props);
@@ -32,12 +23,17 @@ class LambdaDemo extends Component {
   }
 
   onTagsReceived(newTags) {
+    console.log('tags recieved')
     this.setState({
       appStatus: "ReceivedResponseFromWidget",
       tags: newTags
     });
   }
-
+  renderImageGroup() {
+    if(this.state.appStatus === "ReceivedResponseFromWidget") {
+      return (<ImageGroup tags={this.state.tags} maxImages={5} />)
+    }
+  }
   render() {
     return (
       <div>
@@ -49,7 +45,7 @@ class LambdaDemo extends Component {
             selectAll={this.selectAll} 
             downloadSelected={this.downloadSelected} 
       />
-      <ImageGroup tags={testTags} maxImages={5} />
+      {this.renderImageGroup()}
       </div>
     );
   }

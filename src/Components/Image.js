@@ -17,6 +17,7 @@ export default class Image extends Component {
   }
 
   render() {
+    console.log('rendering image', this.props);
     return (
       <div className="imageComponent">
         <img className="image" src={this.props.imageURL} />

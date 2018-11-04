@@ -1,7 +1,27 @@
-.image:hover {
-    filter: brightness(50%);
-}
-
 .image {
     transition: filter 0.5s;
+    width: 100%;
+    height: auto;
+  }
+
+.image:hover {
+  filter: brightness(50%);
+}
+
+.imageComponent {
+    position: relative;
+}
+
+.imgButton {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#downloadButton {
+    top: 70%;
+}
+
+#shareButton {
+    top: 80%;
 }

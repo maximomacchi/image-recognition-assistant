@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
-import ImageRecognitionResponse from "./components/image-recognition-widget/image-recognition-response-phase";
 import "./scss/main.scss";
+import { ImageRecognitionWidget } from "./components/image-recognition-widget/image-recognition-widget";
 
 class LambdaDemo extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class LambdaDemo extends Component {
           {loading ? "Loading..." : "Call Lambda"}
         </button>
         <br />
-        <ImageRecognitionResponse />
+        <ImageRecognitionWidget />
         <span>{msg}</span>
       </p>
     );

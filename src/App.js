@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./scss/main.scss";
-import Image from "./components/Image";
+import { ImageRecognitionWidget } from "./components/image-recognition-widget/image-recognition-widget";
+import ImageGroup from './components/image-group/image-group.js';
+import DownloadController from './components/download-controller/download-controller';
 
-import ImageGroup from "./components/image-group/image-group.js";
+
 
 const testTags = [
   {'name': 'sunset'},
@@ -16,29 +17,40 @@ const testTags = [
 class LambdaDemo extends Component {
   constructor(props) {
     super(props);
-    this.state = { loading: false, msg: null };
+    this.state = {
+      appStatus: "NoResponseFromWidget",
+      imageURLs: [],
+      tags: []
+    };
+  }
+  
+  selectAll = () => {
+  }
+  downloadSelected = () => {
+  }
+  downloadAll = () => {
   }
 
-  handleClick = e => {
-    e.preventDefault();
-
-    this.setState({ loading: true });
-    fetch("/.netlify/functions/hello")
-      .then(response => response.json())
-      .then(json => this.setState({ loading: false, msg: json.msg }));
-  };
+  onTagsReceived(newTags) {
+    this.setState({
+      appStatus: "ReceivedResponseFromWidget",
+      tags: newTags
+    });
+  }
 
   render() {
-    const { loading, msg } = this.state;
-
     return (
-      <p>
-        <button onClick={this.handleClick}>
-          {loading ? "Loading..." : "Call Lambda"}
-        </button>
-        <br />
-        <span>{msg}</span>
-      </p>
+      <div>
+      <ImageRecognitionWidget
+        onTagsReceived={newTags => this.onTagsReceived(newTags)}
+      />
+      <DownloadController 
+            downloadAll={this.downloadAll} 
+            selectAll={this.selectAll} 
+            downloadSelected={this.downloadSelected} 
+      />
+      <ImageGroup tags={testTags} maxImages={5} />
+      </div>
     );
   }
 }
@@ -48,11 +60,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <ImageGroup tags={testTags} maxImages={5} />
+          <LambdaDemo />
         </header>
       </div>
     );

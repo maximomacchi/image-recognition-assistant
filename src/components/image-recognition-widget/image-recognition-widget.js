@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { ImageRecognitionResponse } from "./image-recognition-response-phase";
+import { ImageRecognitionResponse } from "./response-phase/image-recognition-response-phase";
 import { requestTagsForImageURL } from "../../utilities/clarifai-handler";
 
 export class ImageRecognitionWidget extends Component {
@@ -9,49 +9,22 @@ export class ImageRecognitionWidget extends Component {
     this.state = {
       // fetchStatus: "NoInput",
       fetchStatus: "ReceivedResponse",
-      image: "",
+      imageSrc: "",
       tags: []
     };
   }
 
-  onSearchButtonClick = url => {
+  onSearchButtonClick(url) {
     requestTagsForImageURL(url, response => {
       this.setState({
         fetchStatus: "ReceivedResponse",
-        image: "image",
+        imageSrc: url,
         tags: response["outputs"][0]["data"]["concepts"]
       });
     });
-  };
-
-  renderHead() {
-    return (
-      <div className="img-rec-wgt-head">
-        <span id="img-rec-wgt-head-text">Image Recognition Widget</span>
-      </div>
-    );
-  }
-
-  renderSearchButton() {
-    // temp
-    return (
-      <button
-        onClick={this.onSearchButtonClick(
-          "https://samples.clarifai.com/metro-north.jpg"
-        )}
-      >
-        Test Search
-      </button>
-    );
   }
 
   renderBody() {
-    const testTags = [
-      { name: "tag1", value: "1" },
-      { name: "tag2", value: "2" },
-      { name: "tag3", value: "3" }
-    ];
-
     if (["NoInput", "Requesting"].includes(this.state.fetchStatus)) {
       return (
         <div>
@@ -65,9 +38,13 @@ export class ImageRecognitionWidget extends Component {
           <ImageRecognitionResponse
             // onTagsReceived={this.props.onTagsReceived}
             onTagsReceived="null"
-            image={this.state.image}
-            // tags={this.state.tags}
-            tags={testTags}
+            onNewSearchPress={() =>
+              this.onSearchButtonClick(
+                "https://samples.clarifai.com/metro-north.jpg"
+              )
+            }
+            imageSrc={this.state.imageSrc}
+            tags={this.state.tags}
           />
         </div>
       );
@@ -77,24 +54,8 @@ export class ImageRecognitionWidget extends Component {
     }
   }
 
-  renderFooter() {
-    // start a new search button
-    return (
-      <div className="img-rec-wgt-head">
-        <button>New Search</button>
-      </div>
-    );
-  }
-
   render() {
-    return (
-      <div className="img-rec-wgt-component">
-        {this.renderHead()}
-        {this.renderSearchButton()}
-        {this.renderBody()}
-        {this.renderFooter()}
-      </div>
-    );
+    return <div className="img-rec-wgt-component">{this.renderBody()}</div>;
   }
 }
 

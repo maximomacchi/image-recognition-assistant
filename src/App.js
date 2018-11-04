@@ -20,11 +20,7 @@ class LambdaDemo extends Component {
   };
 
   render() {
-    return (
-      <p>
-        <ImageRecognitionWidget />
-      </p>
-    );
+    return <ImageRecognitionWidget />;
   }
 }
 

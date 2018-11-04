@@ -21,6 +21,13 @@
   height: 65px;
   width: 225px;
   font-size: 2.75vw;
+  transition: background-color 0.35s;
+  transition: color 0.35s;
+}
+
+.imgButton:hover {
+  background-color: rgb(234, 248, 248);
+  color: black;
 }
 
 .imageComponent:hover > .image {

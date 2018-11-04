@@ -23,9 +23,9 @@ export default class Image extends Component {
         <button className="imgButton" id="downloadButton" onClick={this.downloadClick}>
           Download
         </button>
-        <button className="imgButton" id="shareButton" onClick={this.shareClick}>
+        {/* <button className="imgButton" id="shareButton" onClick={this.shareClick}>
           Share
-        </button>
+        </button> */}
       </div>
     );
   }

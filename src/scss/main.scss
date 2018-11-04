@@ -1,3 +1,7 @@
 .image:hover {
     filter: brightness(50%);
 }
+
+.image {
+    transition: filter 0.5s;
+}

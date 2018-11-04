@@ -8,19 +8,24 @@ class LambdaDemo extends Component {
     super(props);
     this.state = {
       appStatus: "NoResponseFromWidget",
-      imageURLs: []
+      imageURLs: [],
+      tags: []
     };
   }
 
-  onTagsReceived = () => {
-    // request to pixabay code here
+  onTagsReceived(newTags) {
     this.setState({
-      appStatus: "ReceivedResponseFromWidget"
+      appStatus: "ReceivedResponseFromWidget",
+      tags: newTags
     });
-  };
+  }
 
   render() {
-    return <ImageRecognitionWidget />;
+    return (
+      <ImageRecognitionWidget
+        onTagsReceived={newTags => this.onTagsReceived(newTags)}
+      />
+    );
   }
 }
 

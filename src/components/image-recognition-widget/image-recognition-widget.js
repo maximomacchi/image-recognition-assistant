@@ -15,12 +15,16 @@ export class ImageRecognitionWidget extends Component {
   }
 
   onSearchButtonClick(url) {
+    // Double storage of tags so widget can be standalone
     requestTagsForImageURL(url, response => {
+      const receivedTags = response["outputs"][0]["data"]["concepts"];
       this.setState({
         fetchStatus: "ReceivedResponse",
         imageSrc: url,
-        tags: response["outputs"][0]["data"]["concepts"]
+        tags: receivedTags
       });
+      // Store tags on app state as well
+      this.props.onTagsReceived(receivedTags);
     });
   }
 
@@ -37,7 +41,6 @@ export class ImageRecognitionWidget extends Component {
         <div>
           <ImageRecognitionResponse
             // onTagsReceived={this.props.onTagsReceived}
-            onTagsReceived="null"
             onNewSearchPress={() =>
               this.onSearchButtonClick(
                 "https://samples.clarifai.com/metro-north.jpg"

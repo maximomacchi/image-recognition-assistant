@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
 export class ImageRecognitionResponse extends Component {
-  componentDidMount() {
-    // this.props.onTagsRecieved();
-  }
   renderImage() {
     if (this.props.imageSrc.length <= 0) {
       return;

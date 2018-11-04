@@ -21,6 +21,9 @@ class LambdaDemo extends Component {
   }
   downloadAll = () => {
   }
+  fillForm = () => {
+    document.getElementById("input-img-url").setAttribute("value", "https://i.pinimg.com/originals/44/b6/53/44b6537b7578d7667232ce6ceb807892.jpg");
+  }
 
   onTagsReceived(newTags) {
     console.log('tags recieved')
@@ -40,11 +43,12 @@ class LambdaDemo extends Component {
       <ImageRecognitionWidget
         onTagsReceived={newTags => this.onTagsReceived(newTags)}
       />
-      <DownloadController 
+      <button id="prefillButton" onClick={this.fillForm}>Populate form</button>
+      {/* <DownloadController 
             downloadAll={this.downloadAll} 
             selectAll={this.selectAll} 
             downloadSelected={this.downloadSelected} 
-      />
+      /> */}
       {this.renderImageGroup()}
       </div>
     );

@@ -1,0 +1,44 @@
+// Body
+.img-rec-wgt-request-body {
+  min-height: 100px;
+
+  // Content
+  .img-rec-wgt-request-tab-content {
+    display: block;
+    width: 100%;
+  }
+
+  // Input description
+  .img-rec-wgt-request-tab-content-desc {
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+    padding-top: 1rem;
+  }
+
+  #input-img-url {
+    padding: 0.5rem 1rem;
+    width: 60%;
+  }
+}
+
+// Tabs
+.img-rec-wgt-response-input-source-tabs {
+  font-size: 1rem;
+  display: flex;
+  width: 80%;
+  background: rgb(209, 210, 211);
+  width: 100%;
+  cursor: pointer;
+
+  .img-rec-wgt-response-input-source-tabs-name {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    flex: 1;
+    padding: 1rem 0;
+  }
+
+  .img-rec-wgt-response-input-source-tabs-name.img-rec-wgt-response-input-source-tabs-active {
+    background: rgb(231, 231, 235) !important;
+  }
+}

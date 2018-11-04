@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import ImageGroup from './components/image-group/image-group.js';
+import DownloadController from './components/download-controller/download-controller';
 
 const testTags = [
   {'name': 'sunset'},
@@ -12,45 +13,25 @@ const testTags = [
   {'name': 'sunrise'}
 ]
 
-class LambdaDemo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loading: false, msg: null };
-  }
-
-  handleClick = e => {
-    e.preventDefault();
-
-    this.setState({ loading: true });
-    fetch('/.netlify/functions/hello')
-      .then(response => response.json())
-      .then(json => this.setState({ loading: false, msg: json.msg }));
-  };
-
-  render() {
-    const { loading, msg } = this.state;
-
-    return (
-      <p>
-        <button onClick={this.handleClick}>
-          {loading ? 'Loading...' : 'Call Lambda'}
-        </button>
-        <br />
-        <span>{msg}</span>
-      </p>
-    );
-  }
-}
-
 class App extends Component {
+  selectAll = () => {
+
+  }
+  downloadSelected = () => {
+
+  }
+  downloadAll = () => {
+
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+          <DownloadController 
+            downloadAll={this.downloadAll} 
+            selectAll={this.selectAll} 
+            downloadSelected={this.downloadSelected} 
+          />
           <ImageGroup tags={testTags} maxImages={5} />
         </header>
       </div>

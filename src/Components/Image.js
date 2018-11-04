@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 
-export default class Image {
+export default class Image extends Component {
   constructor(props) {
-    this(props);
+    super(props);
     this.state = {
-      imageURL: ""
+      imageURL: this.props.imageURL
     };
   }
 
   render() {
-    if (this.state.imageURL) {
+    if (this.state.imageURL != "") {
       return (
-        <div className="image">
-          <img src={this.state.imageURL} />
-        </div>
+          <img className="image" src={this.state.imageURL} />
       );
     } else {
       return <div>Loading...</div>;

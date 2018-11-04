@@ -4,6 +4,8 @@ import { ImageRecognitionWidget } from "./components/image-recognition-widget/im
 import ImageGroup from './components/image-group/image-group.js';
 import DownloadController from './components/download-controller/download-controller';
 
+
+
 const testTags = [
   {'name': 'sunset'},
   {'name': 'beach'},
@@ -50,6 +52,8 @@ class LambdaDemo extends Component {
       <ImageGroup tags={testTags} maxImages={5} />
       </div>
     );
+  }
+}
 
 class App extends Component {
   render() {

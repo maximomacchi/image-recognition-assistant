@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./scss/main.scss";
 import { ImageRecognitionWidget } from "./components/image-recognition-widget/image-recognition-widget";
-import ImageGroup from "./components/image-group/image-group.js";
+import ImageGroup from "./components/image-group/image-group";
 import DownloadController from "./components/download-controller/download-controller";
 
 class LambdaDemo extends Component {

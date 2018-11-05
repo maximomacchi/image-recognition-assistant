@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "./scss/main.scss";
 import { ImageRecognitionWidget } from "./components/image-recognition-widget/image-recognition-widget";
-import ImageGroup from './components/image-group/image-group.js';
-import DownloadController from './components/download-controller/download-controller';
-
+import ImageGroup from "./components/image-group/image-group.js";
+import DownloadController from "./components/download-controller/download-controller";
 
 class LambdaDemo extends Component {
   constructor(props) {
@@ -14,42 +13,43 @@ class LambdaDemo extends Component {
       tags: []
     };
   }
-  
-  selectAll = () => {
-  }
-  downloadSelected = () => {
-  }
-  downloadAll = () => {
-  }
+
+  selectAll = () => {};
+  downloadSelected = () => {};
+  downloadAll = () => {};
   fillForm = () => {
-    document.getElementById("input-img-url").setAttribute("value", "https://i.pinimg.com/originals/44/b6/53/44b6537b7578d7667232ce6ceb807892.jpg");
-  }
+    document
+      .getElementById("input-img-url")
+      .setAttribute(
+        "value",
+        "https://i.pinimg.com/originals/44/b6/53/44b6537b7578d7667232ce6ceb807892.jpg"
+      );
+  };
 
   onTagsReceived(newTags) {
-    console.log('tags recieved')
+    console.log("tags recieved");
     this.setState({
       appStatus: "ReceivedResponseFromWidget",
       tags: newTags
     });
   }
   renderImageGroup() {
-    if(this.state.appStatus === "ReceivedResponseFromWidget") {
-      return (<ImageGroup tags={this.state.tags} maxImages={5} />)
+    if (this.state.appStatus === "ReceivedResponseFromWidget") {
+      return <ImageGroup tags={this.state.tags} maxImages={5} />;
     }
   }
   render() {
     return (
       <div>
-      <ImageRecognitionWidget
-        onTagsReceived={newTags => this.onTagsReceived(newTags)}
-      />
-      <button id="prefillButton" onClick={this.fillForm}>Populate form</button>
-      {/* <DownloadController 
-            downloadAll={this.downloadAll} 
-            selectAll={this.selectAll} 
-            downloadSelected={this.downloadSelected} 
-      /> */}
-      {this.renderImageGroup()}
+        <ImageRecognitionWidget
+          onTagsReceived={newTags => this.onTagsReceived(newTags)}
+        />
+        <DownloadController
+          downloadAll={this.downloadAll}
+          selectAll={this.selectAll}
+          downloadSelected={this.downloadSelected}
+        />
+        {this.renderImageGroup()}
       </div>
     );
   }

@@ -1,0 +1,90 @@
+#imageGroup {
+  width: 60%;
+  position: relative;
+  left: -55%;
+  top: 5%;
+}
+
+.image {
+  //   width: 100%;
+  //   height: auto;
+  width: 640px;
+  transition: filter 0.35s;
+}
+
+.image:hover {
+  filter: brightness(25%);
+}
+
+.imgButton {
+  visibility: hidden;
+  position: absolute;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  //   border-radius: 35px;
+  background-color: initial;
+  color: white;
+  //   border: 2px solid white;
+  border: none;
+  height: 65px;
+  width: 225px;
+  font-size: 2.75vw;
+  transition: background-color 0.35s;
+  transition: color 0.35s;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+}
+
+.imgButton:hover {
+  //   background-color: rgb(234, 248, 248);
+  //   color: black;
+  color: rgb(107, 206, 198);
+  cursor: pointer;
+}
+
+.imageComponent:hover > .image {
+  filter: brightness(25%);
+}
+
+.imageComponent {
+  position: relative;
+}
+
+.imageComponent:hover .imgButton {
+  visibility: visible;
+}
+
+#downloadButton {
+  top: 40%;
+}
+
+#shareButton {
+  top: 60%;
+}
+
+@media (max-width: 700px) {
+  .imgButton {
+    font-size: 6vw;
+  }
+}
+
+@media (max-width: 600px) {
+  #downloadButton {
+    top: 35%;
+  }
+
+  #shareButton {
+    top: 65%;
+  }
+}
+
+@media (max-width: 375px) {
+  #downloadButton {
+    top: 30%;
+  }
+
+  #shareButton {
+    top: 70%;
+  }
+}

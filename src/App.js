@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./scss/main.scss";
 import { ImageRecognitionWidget } from "./components/image-recognition-widget/image-recognition-widget";
 import ImageGroup from "./components/image-group/image-group";
-import DownloadController from "./components/download-controller/download-controller";
+// import DownloadController from "./components/download-controller/download-controller";
 
 class LambdaDemo extends Component {
   constructor(props) {
@@ -44,11 +44,11 @@ class LambdaDemo extends Component {
         <ImageRecognitionWidget
           onTagsReceived={newTags => this.onTagsReceived(newTags)}
         />
-        <DownloadController
+        {/* <DownloadController
           downloadAll={this.downloadAll}
           selectAll={this.selectAll}
           downloadSelected={this.downloadSelected}
-        />
+        /> */}
         {this.renderImageGroup()}
       </div>
     );

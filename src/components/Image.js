@@ -17,11 +17,15 @@ export default class Image extends Component {
   }
 
   render() {
-    console.log('rendering image', this.props);
+    console.log("rendering image", this.props);
     return (
       <div className="imageComponent">
-        <img className="image" src={this.props.imageURL} />
-        <button className="imgButton" id="downloadButton" onClick={this.downloadClick}>
+        <img className="image" alt="Result" src={this.props.imageURL} />
+        <button
+          className="imgButton"
+          id="downloadButton"
+          onClick={this.downloadClick}
+        >
           Download
         </button>
         {/* <button className="imgButton" id="shareButton" onClick={this.shareClick}>
